@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoRealm.Phi.Shared.Test", "NoRealm.Phi.Shared.Test.csproj", "{53446291-50C7-477A-B86D-08B47D5EAE34}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoRealm.Phi.Shared", "..\src\NoRealm.Phi.Shared.csproj", "{A32B84BE-480F-44D7-B29D-53C451278E54}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{53446291-50C7-477A-B86D-08B47D5EAE34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53446291-50C7-477A-B86D-08B47D5EAE34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53446291-50C7-477A-B86D-08B47D5EAE34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53446291-50C7-477A-B86D-08B47D5EAE34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A32B84BE-480F-44D7-B29D-53C451278E54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A32B84BE-480F-44D7-B29D-53C451278E54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A32B84BE-480F-44D7-B29D-53C451278E54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A32B84BE-480F-44D7-B29D-53C451278E54}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {34FA9C30-D083-411C-B083-FA75FAC74BE3}
+	EndGlobalSection
+EndGlobal
