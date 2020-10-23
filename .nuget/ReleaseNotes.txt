@@ -1,4 +1,4 @@
-﻿this is the release notes for NoRealm.Phi.Shared libaray
+﻿this is the release notes for NoRealm.Phi.Shared library
 
 Release 0.1.0
 ==========================
