@@ -10,7 +10,7 @@ namespace NoRealm.Phi.Shared.Test.Features
         [Fact]
         public void FeatureCountSuccess()
         {
-            var col = new FeatureCollection(false);
+            var col = new FeatureCollection();
 
             col.Set("string data");
             col.Set((object)null);
@@ -24,7 +24,7 @@ namespace NoRealm.Phi.Shared.Test.Features
         [Fact]
         public void GetFeatureSuccess()
         {
-            var col = new FeatureCollection(false);
+            var col = new FeatureCollection();
 
             col.Set("non-value");
             col.Set(Value.None);
@@ -33,9 +33,9 @@ namespace NoRealm.Phi.Shared.Test.Features
         }
 
         [Fact]
-        public void DisposeOnNullWillNotInvokeSuccess()
+        public void RemoveWillNotDisposeSuccess()
         {
-            var col = new FeatureCollection(false);
+            var col = new FeatureCollection();
             var d = new DisposableClass();
 
             Assert.False(d.IsDisposed);
@@ -47,45 +47,16 @@ namespace NoRealm.Phi.Shared.Test.Features
         }
 
         [Fact]
-        public void DisposeOnNullInvokedSuccess()
+        public void RemoveFeatureSuccess()
         {
-            var col = new FeatureCollection(true);
-            var d = new DisposableClass();
+            var col = new FeatureCollection();
 
-            Assert.False(d.IsDisposed);
+            col.Set(Value.None);
+            col.IsExist<Value>();
 
-            col.Set(d);
-            col.Set<DisposableClass>(null);
+            col.Set<Value>(null);
 
-            Assert.True(d.IsDisposed);
-        }
-
-        [Fact]
-        public void DisposeOnSameObjectWillNotInvokedSuccess()
-        {
-            var col = new FeatureCollection(true);
-            var d = new DisposableClass();
-
-            Assert.False(d.IsDisposed);
-
-            col.Set(d);
-            col.Set(d);
-
-            Assert.False(d.IsDisposed);
-        }
-
-        [Fact]
-        public void DisposeOnDiffObjectsWillInvokedSuccess()
-        {
-            var col = new FeatureCollection(true);
-            var d = new DisposableClass();
-
-            Assert.False(d.IsDisposed);
-
-            col.Set(d);
-            col.Set(new DisposableClass());
-
-            Assert.True(d.IsDisposed);
+            Assert.False(col.IsExist<Value>());
         }
     }
 
