@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 namespace NoRealm.Phi.Shared.Features
@@ -9,17 +10,7 @@ namespace NoRealm.Phi.Shared.Features
     /// </summary>
     public class FeatureCollection : IFeatureCollection
     {
-        private readonly IDictionary<Type, object> resources = new Dictionary<Type, object>();
-
-        /// <summary>
-        /// initialize new instance
-        /// </summary>
-        /// <param name="disposeOnRemove">set to true to call <see cref="IDisposable.Dispose"/> upon removing feature from collection</param>
-        public FeatureCollection(bool disposeOnRemove)
-            => DisposeOnRemove = disposeOnRemove;
-
-        /// <inheritdoc />
-        public bool DisposeOnRemove { get; }
+        private readonly IDictionary<Type, object> features = new ConcurrentDictionary<Type, object>();
 
         /// <inheritdoc />
         public TFeature Get<TFeature>() where TFeature : class
@@ -30,32 +21,31 @@ namespace NoRealm.Phi.Shared.Features
             => this[typeof(TFeature)] = instance;
 
         /// <inheritdoc />
+        public void Remove<TFeature>() where TFeature : class
+            => this[typeof(TFeature)] = null;
+
+        /// <inheritdoc />
         public bool IsExist<TFeature>()
-            => resources.ContainsKey(typeof(TFeature));
+            => features.ContainsKey(typeof(TFeature));
 
         /// <inheritdoc />
         public object this[Type type]
         {
-            get => resources.TryGetValue(type, out var instance) ? instance : null;
+            get => features.TryGetValue(type, out var instance) ? instance : null;
 
             set
             {
-                if (resources.ContainsKey(type))
+                if (value == null)
                 {
-                    var old = resources[type];
-
-                    if (value == null)
-                        resources.Remove(type);
-                    else
-                        resources[type] = value;
-
-                    if (!DisposeOnRemove) return;
-
-                    if (old != value && old is IDisposable dispose)
-                        dispose.Dispose();
+                    if (features.ContainsKey(type))
+                        features.Remove(type);
+                    return;
                 }
-                else if (value != null)
-                    resources.Add(type, value);
+
+                if (features.ContainsKey(type))
+                    features[type] = value;
+                else
+                    features.TryAdd(type, value);
             }
         }
 
@@ -63,7 +53,7 @@ namespace NoRealm.Phi.Shared.Features
         /// get enumerator
         /// </summary>
         /// <returns>enumerator object</returns>
-        public IEnumerator<KeyValuePair<Type, object>> GetEnumerator() => resources.GetEnumerator();
+        public IEnumerator<KeyValuePair<Type, object>> GetEnumerator() => features.GetEnumerator();
 
         /// <summary>
         /// get enumerator

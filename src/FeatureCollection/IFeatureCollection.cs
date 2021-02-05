@@ -9,11 +9,6 @@ namespace NoRealm.Phi.Shared.Features
     public interface IFeatureCollection : IEnumerable<KeyValuePair<Type, object>>
     {
         /// <summary>
-        /// when set to true and object implements <see cref="IDisposable"/>, a call to <see cref="IDisposable.Dispose"/> will be made.
-        /// </summary>
-        bool DisposeOnRemove { get; }
-
-        /// <summary>
         /// Get saved feature.
         /// </summary>
         /// <typeparam name="TFeature">feature type.</typeparam>
@@ -26,6 +21,12 @@ namespace NoRealm.Phi.Shared.Features
         /// <typeparam name="TFeature">feature type.</typeparam>
         /// <param name="instance">an instance or null to remove stored feature.</param>
         void Set<TFeature>(TFeature instance) where TFeature : class;
+
+        /// <summary>
+        /// Remove feature if already exists.
+        /// </summary>
+        /// <typeparam name="TFeature">feature type.</typeparam>
+        void Remove<TFeature>() where TFeature : class;
 
         /// <summary>
         /// determine whether certain feature exists.
