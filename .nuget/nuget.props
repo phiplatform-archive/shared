@@ -1,11 +1,11 @@
 <Project>
   <PropertyGroup>
     <Title>NoRealm.Phi.Shared</Title>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Authors>Muhammad Aladdin</Authors>
     <Company>NoRealm</Company>
     <Product>PhiPlatform</Product>
-    <Copyright>© PhiPlatform 2020</Copyright>
+    <Copyright>© PhiPlatform 2021</Copyright>
     <PackageIcon>.nuget\phi.png</PackageIcon>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseFile>.nuget\LICENSE</PackageLicenseFile>
@@ -15,10 +15,13 @@
     <PackageDescription>Shared functionality used by Phi Platform</PackageDescription>
     <PackageTags>phi shared</PackageTags>
     <PackageReleaseNotes>
-Release 0.1.0
+Release 0.1.1
 ==========================
+ * Upgraded to .NET 5.0
+ * Removed DisposeOnRemove property of IFeatureCollection
+ * Added Remove function to IFeatureCollection
+ * Added Murmur hash function
 
-Inital release
     </PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
